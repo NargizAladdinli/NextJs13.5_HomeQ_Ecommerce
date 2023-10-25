@@ -1,0 +1,89 @@
+@use '../../../scss/partials/mixin' as mixin;
+@use '../../../scss/partials/varaible' as var;
+
+.header {
+    padding: 16px 0;
+    .flex {
+        @include mixin.flex($j_content: space-between, $a_items: center);
+        .flexfirst {
+            @include mixin.flex($gap: 79px, $a_items: center);
+            .logo {
+                h4 {
+                    @include mixin.text($f_size: var.$h4_size, $f_weight: var.$weight400, $f_style: normal, $colrs: var.$Grey100);
+                    span {
+                        font-family: var.$fontCardo;
+                        color: var.$Secondary;
+                    }
+                }
+            }
+            .menu {
+                @include mixin.breakpoint('large') { display: none; }
+                .menulist {
+                    @include mixin.flex($a_items: center, $gap: 64px);
+                    @include mixin.breakpoint('wide') { gap: 32px; }
+                    li {
+                        a {
+                            @include mixin.text($f_size: var.$Large, $f_weight: var.$weight400, $colrs: var.$Grey100);
+                            &:hover { color: var.$Secondary; }
+                        }
+                        .noactive { color: var.$Grey100;}
+                        .active { color: var.$Secondary; }
+                    }
+                }
+            }
+        }
+        .flexsecond { 
+            @include mixin.flex($a_items: center, $gap: 24px);
+            .shoplink { 
+                @include mixin.img($wid: 40px, $heit: 40px); 
+                @include mixin.text($ground: var.$White, $radius: var.$radius20, $colrs: var.$Grey100, $f_size: var.$h4_size); 
+                @include mixin.flex($j_content: center, $a_items: center); 
+                box-shadow: -1px 1px 15px 0px rgba(9, 20, 49, 0.11); 
+            }
+            .signlink { 
+                @include mixin.breakpoint('large') { display: none; }
+                @include mixin.text($f_size: var.$Large, $f_style: normal, $f_weight: var.$weight400, $colrs: var.$Grey100); 
+            }
+            .registerlink { 
+                @include mixin.breakpoint('large') { display: none; }
+                @include mixin.text($colrs: var.$White, $ground: var.$Secondary, $radius: 2px, $f_size: var.$Large, $f_weight: var.$weight600);
+                padding: 12px 28px;
+                transition: all .15s ease-in-out;
+                &:hover{ box-shadow: 0 15px 30px rgba(222,133,86,.5); }
+            }
+            .mobilebtn {
+                @include mixin.breakpoint('large') { display: block; }
+                @include mixin.img($wid: 40px, $heit: 40px);
+                @include mixin.text($radius: var.$radius20, $ground: var.$White, $t_align: center, $l_heit: 27px);
+                box-shadow: -1px 1px 15px 0px rgba(9, 20, 49, 0.11);
+                overflow: hidden;
+                cursor: pointer;
+                display: none;
+                button {
+                    @include mixin.text($ground: transparent, $border: none);
+                    position: relative;
+                    width: 24px;
+                    cursor: pointer;
+                    &::after {
+                        content: "";
+                        @include mixin.position($position: absolute, $left: 0, $top: -7px);
+                        @include mixin.img($wid: 100%, $heit: 2px);
+                        background-color: black;
+                    }
+                    span {
+                        @include mixin.position($position: absolute, $right: 0);
+                        @include mixin.img($wid: 80%, $heit: 2px);
+                        display: inline-block;
+                        background-color: black;
+                    }
+                    &::before {
+                        content: "";
+                        @include mixin.position($position: absolute, $right: 0, $top: 8px);
+                        @include mixin.img($wid: 60%, $heit: 2px);
+                        background-color: black;
+                    }
+                }
+            }
+        }
+    }
+}
