@@ -3,9 +3,12 @@ import Link from "next/link";
 import style from "./_header.module.scss";
 import { LiaAngleDownSolid, LiaShoppingCartSolid } from "react-icons/lia";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
+import Mobile from "./mobiles/Mobile";
 
 const Header = () => {
   const router = usePathname();
+  const [active, setactive] = useState(false)
   return (
     <header className={style.header}>
       <div className="container">
@@ -89,13 +92,14 @@ const Header = () => {
             </Link>
             <Link href="#" className={style.signlink}>Sign in</Link>
             <Link href="#" className={style.registerlink}>Register</Link>
-            <div className={style.mobilebtn}>
-              <button>
+            <div className={style.mobilebtn} onClick={() => setactive(!active)}>
+              <button  className={`${active ? style.close : style.open}`}>
                 <span></span>
               </button>
             </div>
           </div>
         </div>
+        <Mobile/>
       </div>
     </header>
   );
