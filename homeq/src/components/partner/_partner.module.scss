@@ -1,0 +1,47 @@
+@use '../../scss/partials/mixin' as mixin;
+@use '../../scss/partials/varaible' as var;
+
+.partner{
+    padding-top: 100px;
+    .cards{
+        @include mixin.flex($wrap:wrap,$a_items:center);
+        .col5{
+            @include mixin.breakpoint('medium') {
+                width: 100%;
+            }
+            @include mixin.breakpoint('large'){
+                width: 50%;
+            }
+            width: 41.666667%;
+            .image{
+                width: 100%;
+                padding: 0 15px;
+                img{ @include mixin.img($wid:100%,$heit:100%,$o_fit:cover); }
+            }
+        }
+        .col7{
+            @include mixin.breakpoint('medium'){
+                width: 100%;
+            }
+            @include mixin.breakpoint('large'){
+                width: 50%;
+            }
+            width: 58.333333%;
+            .content{
+                @include mixin.breakpoint('medium') { padding: 15px;}
+                @include mixin.breakpoint('large'){ padding: 0 30px; }
+                
+                padding: 0 104px;
+                h3{ 
+                    @include mixin.text($colrs:var.$Grey100,$f_size:var.$h3_size,$f_weight:var.$weight400);
+                    @include mixin.breakpoint('medium') { font-size: 32px;}
+
+                 }
+                p{
+                    @include mixin.text($colrs:var.$Grey80,$f_size:var.$Large,$f_weight:var.$weight400,$l_heit:24px);
+                    margin-top: 30px;
+                }
+            }
+        }
+    }
+}

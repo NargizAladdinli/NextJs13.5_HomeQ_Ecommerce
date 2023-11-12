@@ -47,13 +47,13 @@
 }
 $breakpoints:(
     small: 576px,
-    medium: 720px,
-    large: 960px,
+    medium: 768px,
+    large: 992px,
     wide: 1200px
 );
 @mixin breakpoint($name) {
     @if map-has-key($breakpoints, $name ){
-        @media (max-width: map-get($breakpoints, $name)) {
+        @media (min-width: map-get($breakpoints, $name)) {
             @content;
         }
     } @else {

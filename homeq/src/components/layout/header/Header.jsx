@@ -1,14 +1,18 @@
 "use client";
 import Link from "next/link";
 import style from "./_header.module.scss";
-import { LiaAngleDownSolid, LiaShoppingCartSolid } from "react-icons/lia";
+import { LiaAngleDownSolid, LiaShoppingCartSolid, LiaAngleUpSolid } from "react-icons/lia";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import Mobile from "./mobiles/Mobile";
 
 const Header = () => {
   const router = usePathname();
-  const [active, setactive] = useState(false)
+  const [active, setactive] = useState(false);
+  const [drop, setDrop] = useState(false);
+  const handleclick = () => {
+    setDrop(!drop);
+  }
   return (
     <header className={style.header}>
       <div className="container">
@@ -63,15 +67,35 @@ const Header = () => {
                     News
                   </Link>
                 </li>
-                <li>
+                <li onClick={handleclick} className={style.dropdownli}>
                   <Link
                     href="#"
                     className={`${
                       router === "#" ? style.active : style.noactive
                     }`}
                   >
-                    Pages <LiaAngleDownSolid />
+                    Pages {drop ? <LiaAngleUpSolid/> : <LiaAngleDownSolid/>}
                   </Link>
+                  <ul className={`${drop ? style.dorpup : style.dropdown}`}>
+                    <li>
+                      <Link href="#">Portofolio</Link>
+                    </li>
+                    <li>
+                      <Link href="#">Our Agent</Link>
+                    </li>
+                    <li>
+                      <Link href="#">Our Service</Link>
+                    </li>
+                    <li>
+                      <Link href="#">Wishlist</Link>
+                    </li>
+                    <li>
+                      <Link href="#">Location</Link>
+                    </li>
+                    <li>
+                      <Link href="#">FAQ</Link>
+                    </li>
+                  </ul>
                 </li>
                 <li>
                   <Link
@@ -99,7 +123,7 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <Mobile/>
+        <Mobile active={active}/>
       </div>
     </header>
   );
